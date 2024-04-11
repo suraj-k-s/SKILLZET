@@ -24,17 +24,17 @@ public class ConnectionClass {
 
 
     public boolean executeCommand(String str) {
-        boolean bol = false;
+        boolean bol1 = false;
         try {
 
             st = con.createStatement();
             st.executeUpdate(str);
-            bol = true;
+            bol1 = true;
 
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return bol;
+        return bol1;
     }
 
 
