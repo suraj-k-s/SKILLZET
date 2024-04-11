@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Free Dental Medical Hospital Website Template | Smarteyeapps.com</title>
+
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+    <body class="h-100">
+        <div class="container-fluid full-bg h-100">
+           <div class="container h-100">
+               <div class="row no-margin h-100">
+                   <div class="bg-layer d-flex col-md-4">
+                        <div class="login-box row">
+                            <h3>User login</h3>
+                            <input placeholder="Enter Email Address" type="text" class="form-control">
+                            <input type="text" placeholder="Enter Password" class="form-control">
+                            <button class="btn btn-success">Click to Login</button>
+                        </div>
+                    </div>    
+               </div>
+             
+           </div>
+            
+        </div>
+    </body>
+
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>        
+<script src="assets/js/script.js"></script>
+
+<script>
+$( document ).ready(function() {
+    var arr = ['bg_1.jpg','bg_2.jpg'];
+    
+    var i = 0;
+    setInterval(function(){
+        if(i == arr.length - 1){
+            i = 0;
+        }else{
+            i++;
+        }
+        var img = 'url('+arr[i]+')';
+        $(".full-bg").css('background-image',img); 
+     
+    }, 4000)
+
+});
+</script>
+
+</html>
