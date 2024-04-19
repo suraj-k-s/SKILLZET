@@ -83,14 +83,6 @@
 
         </li>
         <li class="">
-            <a   class="has-arrow" href="Game.jsp" aria-expanded="false">
-                <img src="../Assets/admin/img/menu-icon/2.svg" alt="">
-                <span>Game</span>
-            </a>
-
-        </li>
-
-        <li class="">
             <a   class="has-arrow" href="Product.jsp" aria-expanded="false">
                 <img src="../Assets/admin/img/menu-icon/2.svg" alt="">
                 <span>Product</span>

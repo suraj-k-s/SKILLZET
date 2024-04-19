@@ -20,6 +20,17 @@
                 //background-color: #EFF1F7;
             }
         </style>
+        <%
+        if (request.getParameter("id") != null) {
+            String up = "update tbl_cart set cart_status='"+request.getParameter("status")+"' where cart_id='" + request.getParameter("id") + "'";
+
+            if (con.executeCommand(up)) {
+                response.sendRedirect("ProductBooking.jsp");
+            }
+        }
+
+
+    %>
         <%@include file="SessionValidator.jsp" %>
     </head>
 
@@ -38,7 +49,7 @@
             </thead>
             <tbody>
                 <%                     int i = 0;
-                    String selQry = "select * from tbl_booking b inner join tbl_cart c on c.booking_id=b.booking_id inner join tbl_user u on u.user_id=b.user_id inner join tbl_product p on p.product_id=c.product_id booking_status>0";
+                    String selQry = "select * from tbl_booking b inner join tbl_cart c on c.booking_id=b.booking_id inner join tbl_user u on u.user_id=b.user_id inner join tbl_product p on p.product_id=c.product_id where booking_status>1";
                     ResultSet rs = con.selectCommand(selQry);
                     while (rs.next()) {
                         i++;
@@ -51,25 +62,25 @@
                     <td><%=rs.getString("booking_date")%></td>
                     <td><%=rs.getString("cart_qty")%></td>
                     <td><%
-                        if (rs.getString("cart_status").equals("1")) {
-                        %>
-                        Payment Completed <a href="Bookings.jsp?id=<%=rs.getString("cart_id")%>&status=2">Pack</a>
-                        <%
-                        } else if (rs.getString("cart_status").equals("2")) {
-                        %>
-                        Packed 
-                        <%
-                        } else if (rs.getString("cart_status").equals("3")) {
-                        %>
-                        Shipped    
-                        <%
-                        } else if (rs.getString("cart_status").equals("4")) {
-                        %>
-                        Delivered 
-                        <%
-                            }
+                    if (rs.getString("cart_status").equals("1") ) {
+                    %>
+                    Payment Completed <a href="ProductBooking.jsp?id=<%=rs.getString("cart_id")%>&status=2">Pack Product</a>
+                    <%
+                    } else if (rs.getString("cart_status").equals("2") ) {
+                    %>
+                    Product Packed <a href="ProductBooking.jsp?id=<%=rs.getString("cart_id")%>&status=3">Ship Product</a>
+                    <%
+                    } else if (rs.getString("cart_status").equals("3") ) {
+                    %>
+                    Product Shipped <a href="ProductBooking.jsp?id=<%=rs.getString("cart_id")%>&status=4">Deliver Product</a>
+                    <%
+                    } else if (rs.getString("cart_status").equals("4") ) {
+                    %>
+                    Product Delivered 
+                    <%
+                        }
 
-                        %></td>
+                    %></td>
                 </tr>
                 <%                    }
 

@@ -76,6 +76,37 @@
                             <span>Timeline</span>
                         </a>
                     </li>
+                     <li>
+                        <a href="Events.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="EventBookings.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Event Bookings</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="Products.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="Cart.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Cart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Bookings.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Bookings</span>
+                        </a>
+                    </li>
+                     
                     <li>
                         <a href="Complaint.jsp" >
                             <i data-feather="alert-circle"></i>
@@ -228,29 +259,7 @@
                     </div>
                     <h1>Timeline</h1>
                     <div class="controls">
-
-                        <div class="navbar-item is-icon drop-trigger">
-                            <a class="icon-link" href="javascript:void(0);">
-                                <i data-feather="bell"></i>
-                                <span class="indicator"></span>
-                            </a>
-
-                            <div class="nav-drop">
-                                <div class="inner">
-                                    <div class="nav-drop-header">
-                                        <span>Notifications</span>
-                                        <a href="#">
-                                            <i data-feather="bell"></i>
-                                        </a>
-                                    </div>
-                                    <div class="nav-drop-body is-notifications">
-                                        <!-- Notification -->
-
-                                     Hai
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="navbar-item is-icon drop-trigger">
                             <a class="icon-link" href="javascript:void(0);">
                                 <i data-feather="mail"></i>

@@ -57,19 +57,42 @@
                             <span>Timeline</span>
                         </a>
                     </li>
-                     <li>
-                        <a href="userpartyfund.jsp" >
-                            <i data-feather="alert-circle"></i>
-                            <span>payment schemes</span>
-                        </a>
-                         
                     <li>
+                        <a href="Events.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="EventBookings.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Event Bookings</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="Products.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="Cart.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Cart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Bookings.jsp" >
+                            <i data-feather="alert-circle"></i>
+                            <span>Bookings</span>
+                        </a>
+                    </li>
+                      <li>
                         <a href="Complaint.jsp" >
                             <i data-feather="alert-circle"></i>
                             <span>Complaint</span>
                         </a>
                     </li>
-                     
               
                     <li>
                         <a href="../logout.jsp" >

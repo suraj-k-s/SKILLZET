@@ -1,5 +1,5 @@
 <%-- 
-    Document   : ViewUserComplaint
+    Document   : ViewComplaint
     Created on : May 13, 2021, 3:07:52 PM
     Author     : Pro-TECH
 --%>
@@ -20,7 +20,7 @@
             String upQry = "update tbl_complaint set complaint_reply='" + request.getParameter("txt_reply") + "', complaint_reply_date=curdate(),complaint_status='1' where complaint_id='" + request.getParameter("hid") + "'";
             System.out.println(upQry);
             con.executeCommand(upQry);
-            response.sendRedirect("ViewUserComplaint.jsp");
+            response.sendRedirect("ViewComplaint.jsp");
         }
 
 
@@ -92,7 +92,7 @@
                                                 <td align="center"><%=rs.getString("complaint_content")%></td>
                                                 <td align="center"><%=rs.getString("complaint_date")%></td>
                                                 <td align="center"><%=rs.getString("user_name")%></td>
-                                                <td align="center"><a href="ViewUserComplaint.jsp?up=<%=rs.getString("complaint_id")%>" class="status_btn">Reply</a> </td>
+                                                <td align="center"><a href="ViewComplaint.jsp?up=<%=rs.getString("complaint_id")%>" class="status_btn">Reply</a> </td>
                                             </tr>
                                             <%                      }
 

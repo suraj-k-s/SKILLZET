@@ -29,16 +29,14 @@
             <thead>
                 <tr>
                     <th>Sl.no</th>
-                    <th>Name</th>
-                    <th>District</th>
-                    <th>Place</th>
-                    <th>Contact</th>
-                    <th>Email</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>User</th>
                 </tr>
             </thead>
             <tbody>
                 <%                    int i = 0;
-                    String selQry = "select * from tbl_user c inner join tbl_place p on p.place_id=c.place_id inner join tbl_district d on d.district_id=p.district_id where user_status='0'";
+                    String selQry = "select * from tbl_eventbooking eb inner join tbl_user u on u.user_id=eb.user_id inner join tbl_event e on e.event_id=eb.event_id";
                     ResultSet rs = con.selectCommand(selQry);
 
                     while (rs.next()) {
@@ -46,11 +44,9 @@
                 %>
                 <tr>
                     <td><%=i%></td>
+                    <td><%=rs.getString("event_name")%></td>
+                    <td><%=rs.getString("eventbooking_date")%></td>
                     <td><%=rs.getString("user_name")%></td>
-                    <td><%=rs.getString("district_name")%></td>
-                    <td><%=rs.getString("place_name")%></td>
-                    <td><%=rs.getString("user_contact")%></td>
-                    <td><%=rs.getString("user_email")%></td>
                 </tr>
                 <%
                     }

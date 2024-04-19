@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 12:01 AM
+-- Generation Time: Apr 20, 2024 at 12:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `tbl_admin` (
   `admin_password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
+(1, 'Admin', 'admin@gmail.com', 'admin@123');
+
 -- --------------------------------------------------------
 
 --
@@ -42,9 +49,9 @@ CREATE TABLE `tbl_admin` (
 
 CREATE TABLE `tbl_booking` (
   `booking_id` int(11) NOT NULL,
-  `booking_date` varchar(100) NOT NULL DEFAULT '',
+  `booking_date` varchar(100) NOT NULL DEFAULT '0',
   `booking_status` int(11) NOT NULL DEFAULT 0,
-  `booking_amount` varchar(100) NOT NULL DEFAULT '',
+  `booking_amount` varchar(100) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -81,9 +88,26 @@ CREATE TABLE `tbl_category` (
 
 CREATE TABLE `tbl_chat` (
   `chat_id` int(11) NOT NULL,
-  `chat_content` varchar(100) NOT NULL,
   `chat_date` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `chat_content` varchar(100) NOT NULL,
+  `user_from_id` int(11) NOT NULL DEFAULT 0,
+  `user_to_id` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_comment`
+--
+
+CREATE TABLE `tbl_comment` (
+  `comment_id` int(10) UNSIGNED NOT NULL,
+  `comment_content` varchar(200) NOT NULL,
+  `comment_date` varchar(50) NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_name` varchar(50) NOT NULL DEFAULT '0',
+  `user_photo` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -93,13 +117,13 @@ CREATE TABLE `tbl_chat` (
 --
 
 CREATE TABLE `tbl_complaint` (
-  `complaint_id` int(11) NOT NULL,
-  `complaint_date` varchar(100) NOT NULL,
-  `complaint_details` varchar(100) NOT NULL,
-  `complaint_reply` varchar(100) NOT NULL DEFAULT 'Not Yet Replied',
-  `complaint_status` int(11) NOT NULL DEFAULT 0,
-  `user_id` int(11) NOT NULL,
-  `complaint_reply_date` varchar(10) NOT NULL DEFAULT '0'
+  `complaint_id` int(10) UNSIGNED NOT NULL,
+  `complaint_content` varchar(50) NOT NULL,
+  `complaint_date` date NOT NULL,
+  `complaint_reply` varchar(50) NOT NULL DEFAULT 'Not Yet Reply',
+  `complaint_reply_date` varchar(50) NOT NULL DEFAULT '0',
+  `complaint_status` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -146,14 +170,15 @@ CREATE TABLE `tbl_eventbooking` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_game`
+-- Table structure for table `tbl_like`
 --
 
-CREATE TABLE `tbl_game` (
-  `game_id` int(11) NOT NULL,
-  `game_name` varchar(100) NOT NULL,
-  `game_details` varchar(100) NOT NULL,
-  `game_photo` varchar(100) NOT NULL
+CREATE TABLE `tbl_like` (
+  `like_id` int(10) UNSIGNED NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_name` varchar(50) NOT NULL DEFAULT '0',
+  `user_photo` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -166,6 +191,22 @@ CREATE TABLE `tbl_place` (
   `place_id` int(11) NOT NULL,
   `place_name` varchar(100) NOT NULL,
   `district_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_post`
+--
+
+CREATE TABLE `tbl_post` (
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `post_content` varchar(200) NOT NULL,
+  `post_date` varchar(50) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `post_file` longtext DEFAULT NULL,
+  `user_name` varchar(50) NOT NULL DEFAULT '0',
+  `user_photo` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -205,16 +246,15 @@ CREATE TABLE `tbl_review` (
 --
 
 CREATE TABLE `tbl_user` (
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
-  `user_contact` varchar(100) NOT NULL,
-  `user_address` varchar(100) NOT NULL,
-  `user_photo` varchar(100) NOT NULL,
-  `user_proof` varchar(100) NOT NULL,
-  `user_doj` date NOT NULL DEFAULT current_timestamp(),
-  `place_id` int(11) NOT NULL,
-  `user_email` varchar(100) NOT NULL,
-  `user_password` varchar(100) NOT NULL
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `user_contact` varchar(50) NOT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `user_address` varchar(50) NOT NULL,
+  `user_photo` longtext NOT NULL,
+  `user_password` varchar(50) NOT NULL,
+  `place_id` int(10) UNSIGNED NOT NULL,
+  `user_status` int(10) UNSIGNED DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -252,6 +292,12 @@ ALTER TABLE `tbl_chat`
   ADD PRIMARY KEY (`chat_id`);
 
 --
+-- Indexes for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- Indexes for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
@@ -276,16 +322,22 @@ ALTER TABLE `tbl_eventbooking`
   ADD PRIMARY KEY (`eventbooking_id`);
 
 --
--- Indexes for table `tbl_game`
+-- Indexes for table `tbl_like`
 --
-ALTER TABLE `tbl_game`
-  ADD PRIMARY KEY (`game_id`);
+ALTER TABLE `tbl_like`
+  ADD PRIMARY KEY (`like_id`);
 
 --
 -- Indexes for table `tbl_place`
 --
 ALTER TABLE `tbl_place`
   ADD PRIMARY KEY (`place_id`);
+
+--
+-- Indexes for table `tbl_post`
+--
+ALTER TABLE `tbl_post`
+  ADD PRIMARY KEY (`post_id`);
 
 --
 -- Indexes for table `tbl_product`
@@ -313,7 +365,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_booking`
@@ -340,40 +392,52 @@ ALTER TABLE `tbl_chat`
   MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  MODIFY `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
 --
 ALTER TABLE `tbl_district`
-  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_event`
 --
 ALTER TABLE `tbl_event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_eventbooking`
 --
 ALTER TABLE `tbl_eventbooking`
-  MODIFY `eventbooking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `eventbooking_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_game`
+-- AUTO_INCREMENT for table `tbl_like`
 --
-ALTER TABLE `tbl_game`
-  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `tbl_like`
+  MODIFY `like_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_place`
 --
 ALTER TABLE `tbl_place`
-  MODIFY `place_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `place_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_post`
+--
+ALTER TABLE `tbl_post`
+  MODIFY `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_product`
@@ -391,7 +455,7 @@ ALTER TABLE `tbl_review`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
